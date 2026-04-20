@@ -38,7 +38,7 @@
     thumb?: string | null;
   }
 
-  const fields = $derived.by<FieldRow[]>(buildFields);
+  const fields = $derived.by(buildFields);
 
   function buildFields(): FieldRow[] {
     const d = batch.state.draft;
@@ -174,10 +174,7 @@
         />
         {#if batch.state.draft.price > 0}
           <div class="stepper">
-            <PriceStepper
-              price={batch.state.draft.price}
-              onSet={(v) => batch.setDraftField("price", v)}
-            />
+            <PriceStepper bind:price={batch.state.draft.price} />
           </div>
         {/if}
       </FieldPanel>
