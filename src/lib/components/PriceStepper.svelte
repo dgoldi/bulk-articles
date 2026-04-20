@@ -1,21 +1,20 @@
 <script lang="ts">
   interface Props {
     price: number;
-    onSet: (v: number) => void;
   }
-  let { price, onSet }: Props = $props();
+  let { price = $bindable() }: Props = $props();
 </script>
 
 <div class="row">
   <button
     type="button"
     class="ch tweak"
-    onclick={() => onSet(Math.max(0, price - 5))}
+    onclick={() => (price = Math.max(0, price - 5))}
   >
     −5
   </button>
   <span class="value">{price > 0 ? price.toFixed(2) : "—"}</span>
-  <button type="button" class="ch tweak" onclick={() => onSet(price + 5)}>
+  <button type="button" class="ch tweak" onclick={() => (price = price + 5)}>
     +5
   </button>
 </div>

@@ -109,7 +109,7 @@
   </Field>
 
   <Field label="Price">
-    <PriceStepper price={draft.price} onSet={(v) => (draft.price = v)} />
+    <PriceStepper bind:price={draft.price} />
     <div class="price-picker">
       <PricePicker value={draft.price} onPick={(v) => (draft.price = v)} />
       <CustomPriceBtn price={draft.price} onSet={(v) => (draft.price = v)} inline />

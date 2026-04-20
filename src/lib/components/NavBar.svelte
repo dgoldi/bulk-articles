@@ -15,7 +15,7 @@
     fwd?: NavAction;
   }
 
-  const nav = $derived.by<NavConfig>(resolveNav);
+  const nav = $derived.by(resolveNav);
 
   function resolveNav(): NavConfig {
     const p = page.url.pathname;
