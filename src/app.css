@@ -1,0 +1,132 @@
+:root {
+  --bg: #fff;
+  --text: #111;
+  --muted: #888;
+  --sub: #aaa;
+  --border: #eee;
+  --border-soft: #f0f0f0;
+  --bg-alt: #fafafa;
+  --chip-bg: #f5f5f5;
+  --accent: #111;
+  --green: #16a34a;
+  --green-bg: #ecfdf5;
+  --green-border: #86efac;
+  --indigo: #4f46e5;
+  --indigo-bg: #eef2ff;
+  --indigo-border: #c7d2fe;
+  --red: #ef4444;
+  --red-border: #fecaca;
+  --mono: "DM Mono", monospace;
+  --sans: "DM Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 2px;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  user-select: none;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.ch,
+.ab {
+  transition: all 0.12s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ch:hover {
+  filter: brightness(0.97);
+}
+
+.ab:active {
+  transform: scale(0.98);
+}
+
+.pop {
+  animation: pop 0.2s ease forwards;
+}
+
+.fi {
+  animation: fadeUp 0.2s ease forwards;
+}
+
+.app-frame {
+  background: var(--bg);
+  min-height: 100vh;
+  max-width: 430px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+}
