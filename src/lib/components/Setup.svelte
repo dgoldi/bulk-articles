@@ -3,9 +3,13 @@
   import {
     BRANDS,
     CATEGORIES,
+    CURRENCIES,
+    PRICE_TYPES,
     BRAND_TIER,
     TIER_LBL,
     type BrandName,
+    type Currency,
+    type PriceType,
   } from "$lib/data/constants";
   import { batch } from "$lib/state/bulk-intake.svelte";
   import Field from "./Field.svelte";
@@ -43,6 +47,22 @@
       items={CATEGORIES}
       value={batch.state.template.category}
       onPick={(v) => batch.setTemplateField("category", v)}
+    />
+  </Field>
+
+  <Field label="Currency">
+    <Chips
+      items={CURRENCIES}
+      value={batch.state.template.currency}
+      onPick={(v) => batch.setTemplateField("currency", v as Currency)}
+    />
+  </Field>
+
+  <Field label="Price type">
+    <Chips
+      items={PRICE_TYPES}
+      value={batch.state.template.priceType}
+      onPick={(v) => batch.setTemplateField("priceType", v as PriceType)}
     />
   </Field>
 

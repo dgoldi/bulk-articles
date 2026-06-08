@@ -7,9 +7,8 @@
   import FieldPanel from "./FieldPanel.svelte";
   import SizePicker from "./SizePicker.svelte";
   import ColorPicker from "./ColorPicker.svelte";
-  import PricePicker from "./PricePicker.svelte";
+  import PriceKeypad from "./PriceKeypad.svelte";
   import PriceStepper from "./PriceStepper.svelte";
-  import CustomPriceBtn from "./CustomPriceBtn.svelte";
   import PhotoCapture from "./PhotoCapture.svelte";
   import Pill from "./Pill.svelte";
   import ColorLabel from "./ColorLabel.svelte";
@@ -64,7 +63,7 @@
       },
       {
         key: "price",
-        label: "Price",
+        label: batch.state.template.priceType.split(" ")[0],
         done: batch.isFieldDone("price"),
         val: d.price > 0 ? d.price.toFixed(2) : null,
       },
@@ -88,10 +87,6 @@
   function pickColor(c: string): void {
     batch.setDraftField("color", c);
     batch.advanceDraft("color");
-  }
-  function pickPrice(p: number): void {
-    batch.setDraftField("price", p);
-    batch.advanceDraft("price");
   }
   function capture(dataUrl: string): void {
     batch.setDraftField("photo", dataUrl);
@@ -157,20 +152,12 @@
         />
       </FieldPanel>
     {:else if batch.state.draft.active === "price"}
-      <FieldPanel title="Price">
-        {#snippet action()}
-          <CustomPriceBtn
-            price={batch.state.draft.price}
-            onSet={(p) => {
-              batch.setDraftField("price", p);
-              batch.advanceDraft("price");
-            }}
-          />
-        {/snippet}
-        <PricePicker
+      <FieldPanel title={batch.state.template.priceType}>
+        <PriceKeypad
           value={batch.state.draft.price}
-          onPick={pickPrice}
-          fullBleed
+          currency={batch.state.template.currency}
+          onInput={(v) => batch.setDraftField("price", v)}
+          onConfirm={() => batch.advanceDraft("price")}
         />
         {#if batch.state.draft.price > 0}
           <div class="stepper">
@@ -208,7 +195,7 @@
           </div>
           {#if batch.state.draft.price > 0}
             <div class="preview-price">
-              CHF {batch.state.draft.price.toFixed(2)}
+              {batch.money(batch.state.draft.price)}
             </div>
           {/if}
         </div>

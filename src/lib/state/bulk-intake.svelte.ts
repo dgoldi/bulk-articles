@@ -72,6 +72,10 @@ class BulkIntakeStore {
     return this.state.items.find((i) => i.id === id);
   }
 
+  money(n: number): string {
+    return `${this.state.template.currency} ${n.toFixed(2)}`;
+  }
+
   setTemplateField<K extends keyof Template>(field: K, value: Template[K]): void {
     if (this.state.template[field] === value) return;
     this.state.template[field] = value;

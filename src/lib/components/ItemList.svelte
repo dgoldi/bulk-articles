@@ -6,9 +6,7 @@
   import ColorLabel from "./ColorLabel.svelte";
 
   const avg = $derived(
-    batch.state.items.length
-      ? (batch.total / batch.state.items.length).toFixed(2)
-      : "0",
+    batch.state.items.length ? batch.total / batch.state.items.length : 0,
   );
 
   function goAdd(): void {
@@ -34,10 +32,10 @@
   <div class="fill">
     <div class="stats">
       <StatBox label="Items" value={batch.state.items.length} />
-      <StatBox label="Avg" value={`CHF ${avg}`} color="#818cf8" />
+      <StatBox label="Avg" value={batch.money(avg)} color="#818cf8" />
       <StatBox
         label="Total"
-        value={`CHF ${batch.total.toFixed(2)}`}
+        value={batch.money(batch.total)}
         color="var(--green)"
       />
     </div>
@@ -64,7 +62,7 @@
             </div>
           </div>
           <span class="price">
-            {it.price > 0 ? `CHF ${it.price.toFixed(2)}` : "—"}
+            {it.price > 0 ? batch.money(it.price) : "—"}
           </span>
           <button type="button" class="ch edit" onclick={() => edit(it.id)}>
             Edit
