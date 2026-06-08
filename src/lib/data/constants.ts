@@ -86,6 +86,8 @@ export const BRAND_TIER: Readonly<Record<BrandName, BrandTier>> = {
 
 export const TIER_LBL = ["FAST FASHION", "MID", "PREMIUM"] as const;
 
-export const PRICES = [
-  4.9, 9.9, 14.9, 19.9, 29.9, 39.9, 49.9, 69.9, 89.9, 129.9, 179.9, 249.9,
-] as const;
+export const CURRENCIES = ["CHF", "EUR", "USD", "GBP"] as const;
+export type Currency = (typeof CURRENCIES)[number];
+
+export const PRICE_TYPES = ["Retail price", "Purchase price"] as const;
+export type PriceType = (typeof PRICE_TYPES)[number];

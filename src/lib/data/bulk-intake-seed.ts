@@ -17,6 +17,8 @@ export const seedState: BulkIntakeState = {
   template: {
     brand: "",
     category: "",
+    currency: "CHF",
+    priceType: "Retail price",
     photosOn: true,
     autoName: false,
     autoNamePrefix: "",

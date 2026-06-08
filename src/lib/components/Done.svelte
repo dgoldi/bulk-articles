@@ -17,7 +17,7 @@
   <div class="pop card">
     <div class="check">✓</div>
     <div class="count">{batch.state.items.length} Published</div>
-    <div class="total">CHF {batch.total.toFixed(2)}</div>
+    <div class="total">{batch.money(batch.total)}</div>
     <div class="meta">
       {batch.state.template.brand} · {batch.state.template.category}
     </div>

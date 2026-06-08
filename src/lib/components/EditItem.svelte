@@ -7,9 +7,8 @@
   import Field from "./Field.svelte";
   import SizePicker from "./SizePicker.svelte";
   import ColorPicker from "./ColorPicker.svelte";
-  import PricePicker from "./PricePicker.svelte";
+  import PriceKeypad from "./PriceKeypad.svelte";
   import PriceStepper from "./PriceStepper.svelte";
-  import CustomPriceBtn from "./CustomPriceBtn.svelte";
 
   interface Props {
     item: Item;
@@ -108,11 +107,14 @@
     />
   </Field>
 
-  <Field label="Price">
-    <PriceStepper bind:price={draft.price} />
-    <div class="price-picker">
-      <PricePicker value={draft.price} onPick={(v) => (draft.price = v)} />
-      <CustomPriceBtn price={draft.price} onSet={(v) => (draft.price = v)} inline />
+  <Field label={batch.state.template.priceType}>
+    <PriceKeypad
+      value={draft.price}
+      currency={batch.state.template.currency}
+      onInput={(v) => (draft.price = v)}
+    />
+    <div class="stepper">
+      <PriceStepper bind:price={draft.price} />
     </div>
   </Field>
 
@@ -204,8 +206,8 @@
     font-size: 14px;
     outline: none;
   }
-  .price-picker {
-    margin-top: 8px;
+  .stepper {
+    margin-top: 12px;
   }
   .actions {
     display: flex;

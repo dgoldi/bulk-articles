@@ -1,10 +1,21 @@
 import { BulkIntakeStateSchema, type BulkIntakeState } from "../types/bulk-intake";
 
-export const CURRENT_SCHEMA_VERSION = 1;
+export const CURRENT_SCHEMA_VERSION = 2;
 
 type Migration = (data: Record<string, unknown>) => Record<string, unknown>;
 
-const migrations: Record<number, Migration> = {};
+const migrations: Record<number, Migration> = {
+  // v1 → v2: add per-batch currency + price type to the template.
+  1: (data) => {
+    if (isPlainObject(data.template)) {
+      const t = data.template;
+      if (typeof t.currency !== "string") t.currency = "CHF";
+      if (typeof t.priceType !== "string") t.priceType = "Retail price";
+    }
+    data.schemaVersion = 2;
+    return data;
+  },
+};
 
 function isPlainObject(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null && !Array.isArray(v);

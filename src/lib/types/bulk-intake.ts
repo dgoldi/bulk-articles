@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CURRENCIES, PRICE_TYPES } from "../data/constants";
 
 export const ItemSchema = z.object({
   id: z.string(),
@@ -14,6 +15,8 @@ export const ItemSchema = z.object({
 export const TemplateSchema = z.object({
   brand: z.string(),
   category: z.string(),
+  currency: z.enum(CURRENCIES),
+  priceType: z.enum(PRICE_TYPES),
   photosOn: z.boolean(),
   autoName: z.boolean(),
   autoNamePrefix: z.string(),
